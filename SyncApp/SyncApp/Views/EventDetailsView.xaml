@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SyncApp.Views.EventDetailsView"
+             Title="{Binding EventName}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SaveItemCommand}"
+                     Order="Primary"
+                     Text="Save" />
+
+        <ToolbarItem Command="{Binding DeleteItemCommand}"
+                     Order="Primary"
+                     Text="Delete" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Margin="10"
+          ColumnSpacing="10"
+          RowSpacing="10"
+          RowDefinitions="Auto,Auto,*"
+          ColumnDefinitions="*,2*">
+
+        <Label Text="Event Name"
+               FontSize="Large"/>
+
+        <Entry Text="{Binding Item.EventName}"
+               Grid.Column="1"
+               HorizontalOptions="Start"
+               WidthRequest="300"/>
+
+        <Label Text="Event Date"
+               FontSize="Large"
+               Grid.Row="1"/>
+
+        <DatePicker Date="{Binding Item.EventDate}"
+               Grid.Row="1"
+               Grid.Column="1"
+               HorizontalOptions="Start"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SyncApp.Views.EventListView"
+             xmlns:vm="clr-namespace:SyncApp.ViewModels"
+             Title="Event List">
+
+    <ContentPage.BindingContext>
+        <vm:EventListViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddNewCommand}"
+                     Order="Primary"
+                     Text="Add" />
+
+        <ToolbarItem Command="{Binding ImportDataCommand}"
+                     Order="Primary"
+                     Text="Import" />
+
+        <ToolbarItem Command="{Binding SyncDataCommand}"
+                     Order="Primary"
+                     Text="Sync" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               Color="Orange" />
+
+            <CollectionView
+                ItemsSource="{Binding Items}"
+                SelectedItem="{Binding SelectedItem}"
+                SelectionChangedCommand="{Binding GoToDetailsCommand}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Label
+                                FontSize="Large"
+                                Text="{Binding EventName}"
+                                TextColor="Green" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
